@@ -35,6 +35,27 @@ $(document).ready(function () {
   });
 });
 
+$('form').submit(function (e) {
+  var error = "";
+  if ($('#name').val() == "") {
+    error += "The name field is required.<br>";
+  }
+  if ($('#email').val() == "") {
+    error += "The email field is required.<br>";
+  }
+  if ($('#message').val() == "") {
+    error += "The message field is required.";
+  }
+  if (error != "") {
+    $("#error").html('<div class="alert alert-danger" role="alert"><p><strong>Error(s) were found in your form:</strong></p>'
+     + error + '</div>');
+     return false;
+  } else {
+    return true;
+  }
+
+});
+
 window.initMap = function () {
   var location = { lat: 36.728205, lng: -76.583562 };
   var map = new google.maps.Map(document.getElementById('map'), {
